@@ -1,6 +1,9 @@
 ---
 title: "Day01"
 ---
+```{r setup, include=FALSE}
+source("R.packages.R")
+```
 
 Code for Part 1 example:
 ```{r}
