@@ -1,4 +1,4 @@
-# R/packages.R
+# R.packages.R
 
 library(tidyverse)
 library(here)
