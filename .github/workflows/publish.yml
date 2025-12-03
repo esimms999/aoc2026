@@ -18,6 +18,8 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y pandoc libcurl4-openssl-dev libfontconfig1-dev
+          sudo apt-get install -y libssl-dev libfreetype6-dev
+          sudo apt-get install -y libharfbuzz-dev libfribidi-dev
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -31,6 +33,8 @@ jobs:
         uses: r-lib/actions/setup-renv@v2
         with:
           cache-version: 1
+        env:
+          R_COMPILE_AND_INSTALL_PACKAGES: never  # Force binary installs only
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
