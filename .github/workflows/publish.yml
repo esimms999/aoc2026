@@ -20,6 +20,7 @@ jobs:
           sudo apt-get install -y pandoc libcurl4-openssl-dev libfontconfig1-dev
           sudo apt-get install -y libssl-dev libfreetype6-dev
           sudo apt-get install -y libharfbuzz-dev libfribidi-dev
+          sudo apt-get install -y libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev libwebp-dev
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -29,12 +30,14 @@ jobs:
         with:
           r-version: '4.5.0'
 
-      - name: Install R Dependencies
-        uses: r-lib/actions/setup-renv@v2
-        with:
-          cache-version: 1
+      - name: Install R Dependencies (force binary)
+        run: |
+          Rscript -e '
+            Sys.setenv(R_COMPILE_AND_INSTALL_PACKAGES = "never")
+            renv::restore()
+          '
         env:
-          R_COMPILE_AND_INSTALL_PACKAGES: never  # Force binary installs only
+          RENV_PATHS_ROOT: ~/.cache/renv
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
