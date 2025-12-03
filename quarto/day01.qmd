@@ -2,4 +2,117 @@
 title: "Day01"
 ---
 
-Placeholder for Day01
+Code for Part 1 example:
+```{r}
+# Input instructions and create dataframe with direction and amount of spin
+import_instructions <- function(input_file) {
+  data_in <- read_lines(here::here("data", input_file)) |>
+    tibble(value = _)
+  data_in |>
+    mutate(direction = str_sub(value, 1, 1),
+           amount = as.integer(str_sub(value, 2)),
+           shift  = if_else(direction == "L", amount, -amount))
+}
+
+# Create dial and set to initial value
+create_dial <- function(start, end, init) {
+  dial <- start:end
+  dial <- shift(dial, n = init, type = "cyclic")
+}
+
+data_calc <- import_instructions("day01_example.txt")
+dial <- create_dial(0, 99, 50)
+
+# The actual row-by-row loop
+count_zeros <- 0
+for (i in seq_len(nrow(data_calc))) {
+  dial <- shift(dial, n = data_calc$shift[i], type = "cyclic")
+  if (dial[1] == 0) {count_zeros <- count_zeros + 1}
+}
+```
+
+Answer for Part 1 example: `{r} count_zeros`
+
+
+Code for Part 1:
+```{r}
+data_calc <- import_instructions("day01.txt")
+dial <- create_dial(0, 99, 50)
+
+# The actual row-by-row loop
+count_zeros <- 0
+for (i in seq_len(nrow(data_calc))) {
+  dial <- shift(dial, n = data_calc$shift[i], type = "cyclic")
+  if (dial[1] == 0) {count_zeros <- count_zeros + 1}
+}
+```
+
+Answer for Part 1: `{r} count_zeros`
+
+
+Code for Part 2 example:
+
+```{r}
+# Input instructions and create dataframe with direction and amount of spin
+# Also, we want the number of times around the dial and the actual change
+# in location on the dial.
+import_instructions <- function(input_file) {
+  data_in <- read_lines(here::here("data", input_file)) |>
+    tibble(value = _)
+  data_in |>
+    mutate(direction = str_sub(value, 1, 1),
+           total_amount = as.integer(str_sub(value, 2)),
+           full_spin_count = floor(total_amount / 100),
+           mod_amount = total_amount %% 100,
+           shift  = if_else(direction == "L", mod_amount, -mod_amount)
+           )
+}
+
+data_calc <- import_instructions("day01_example.txt")
+dial <- create_dial(0, 99, 50)
+
+# The actual row-by-row loop
+count_zeros <- 0
+for (i in seq_len(nrow(data_calc))) {
+  start_dial <- dial[1]
+  dial <- shift(dial, n = data_calc$shift[i], type = "cyclic")
+  end_dial <- dial[1]
+
+  if (data_calc$direction[i] == "L") {
+    if (start_dial != 0 && end_dial != 0 && start_dial - end_dial < 0) { count_zeros <- count_zeros + 1  }
+  }
+  else {
+    if (start_dial != 0 && end_dial != 0 && start_dial - end_dial > 0) { count_zeros <- count_zeros + 1  }
+  }
+  if (end_dial == 0) {count_zeros <- count_zeros + 1}
+  count_zeros <- count_zeros + data_calc$full_spin_count[i]
+}
+```
+
+Answer for Part 2 example: `{r} count_zeros`
+ 
+Code for Part 2:
+ 
+```{r}
+data_calc <- import_instructions("day01.txt")
+dial <- create_dial(0, 99, 50)
+
+# The actual row-by-row loop
+count_zeros <- 0
+for (i in seq_len(nrow(data_calc))) {
+  start_dial <- dial[1]
+  dial <- shift(dial, n = data_calc$shift[i], type = "cyclic")
+  end_dial <- dial[1]
+
+  if (data_calc$direction[i] == "L") {
+    if (start_dial != 0 && end_dial != 0 && start_dial - end_dial < 0) { count_zeros <- count_zeros + 1  }
+  }
+  else {
+    if (start_dial != 0 && end_dial != 0 && start_dial - end_dial > 0) { count_zeros <- count_zeros + 1  }
+  }
+  if (end_dial == 0) {count_zeros <- count_zeros + 1}
+  count_zeros <- count_zeros + data_calc$full_spin_count[i]
+}
+```
+
+Answer for Part 2: `{r} count_zeros`
