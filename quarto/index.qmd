@@ -1,7 +1,4 @@
 ---
-title: "aoc2025"
----
----
 title: "Advent of Code 2025: My R Solutions"
 ---
 
