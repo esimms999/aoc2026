@@ -2,12 +2,6 @@
 title: "Day01"
 ---
 
-```{r setup, include = FALSE}
-library(tidyverse)
-library(here)
-library(data.table)
-```
-
 Code for Part 1 example:
 ```{r}
 # Input instructions and create dataframe with direction and amount of spin
