@@ -5,7 +5,6 @@
 
 library(tidyverse)
 library(tidyr)
-library(bit64)
 
 data_in <- read_table(here::here("data", "day06.txt"), col_names = FALSE)
 df1 <- tibble(data_in)
