@@ -5,7 +5,7 @@ project:
 date: today
 
 website:
-  title: "aoc2025"
+  title: "aoc2026"
   navbar:
     left:
       - text: "Home"
@@ -19,10 +19,10 @@ website:
     background: "#F8F8F8"  # Set a light gray background color
     left: "Last rendered: {{< meta date >}}"
     center:
-      - text: "aoc2025 for esimms999"
+      - text: "aoc2026 for esimms999"
     right:
       - icon: github
-        href: https://github.com/esimms999/aoc2025
+        href: https://github.com/esimms999/aoc2026
 
 format:
   html:

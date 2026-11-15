@@ -1,5 +1,5 @@
 ---
-title: "Advent of Code 2025: Daily Challenges"
+title: "Advent of Code 2026: Daily Challenges"
 format: html
 ---
 
