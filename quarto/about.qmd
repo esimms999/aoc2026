@@ -2,11 +2,8 @@
 title: "About"
 ---
 
-I know, I know ... we are not supposed to use AI. But I used Grok a lot to build this. I used it in the same way I would use Google to track down info, 
-but I did not provide it with the AoC challenges and ask for solutions. For example, in the Day 1 challenge, I came up with the idea of using some 
-functionality which would allow me to cycle through vectors or lists, asked Grok for documentation and examples of what was 
-available, e.g. data.table::shift, and then I worked on programming the solutions.
+I know, I know ... we are not supposed to use AI. But I used Grok and Posit Assistant a lot to build this. However, I avoided using AI to solve the challenges (unless noted).
 
-I used Grok far more in asking quarto-related questions in order to organize code and produce this website.
+I used AI far more in asking quarto-related questions in order to organize code and produce this website.
 
-Version 0.3.5
+Version 0.3.6
