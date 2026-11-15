@@ -7,8 +7,13 @@
 # This must only happen in the GitHub Actions rendering, where none of these
 # changes are kept, so a local render fails rather than rearranging the repo.
 
+# NOTE: for local rendering within RStudio, manually run render-local.R
+
 if (Sys.getenv("GITHUB_ACTIONS") != "true") {
-  stop("Rendering is only allowed in GitHub Actions")
+  stop(
+    "Rendering is only allowed in GitHub Actions. ",
+    "To preview locally, run source('render-local.R') in the RStudio console."
+  )
 }
 
 quarto_dir <- "quarto"

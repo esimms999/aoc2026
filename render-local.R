@@ -33,7 +33,19 @@ local({
   )
   if (status != 0) stop("quarto render failed (exit status ", status, ")")
 
-  index <- file.path(dest, "_site", "index.html")
-  message("Rendered site: ", index)
-  if (rstudioapi::isAvailable()) rstudioapi::viewer(index) else utils::browseURL(index)
+  # The RStudio Viewer only serves a single file, so links between pages
+  # fail (e.g. "Input/output error"). Serve the whole site over HTTP instead.
+  # Stop any server from a previous run
+  servr::daemon_stop()
+
+  port <- 7421
+  servr::httd(
+    file.path(dest, "_site"),
+    host = "127.0.0.1", port = port, daemon = TRUE, browser = FALSE
+  )
+
+  url <- sprintf("http://127.0.0.1:%d/index.html", port)
+  message("Previewing ", url, "  (stop with: servr::daemon_stop())")
+  if (rstudioapi::isAvailable()) rstudioapi::viewer(url) else utils::browseURL(url)
 })
+
