@@ -1,0 +1,107 @@
+[
+  {
+    "objectID": "day02.html",
+    "href": "day02.html",
+    "title": "Day02",
+    "section": "",
+    "text": "Placeholder for Day02"
+  },
+  {
+    "objectID": "day01.html",
+    "href": "day01.html",
+    "title": "Day01",
+    "section": "",
+    "text": "Code for Part 1 example:\n\n# Input instructions and create dataframe with direction and amount of spin\nimport_instructions &lt;- function(input_file) {\n  data_in &lt;- read_lines(here::here(\"data\", input_file)) |&gt;\n    tibble(value = _)\n  data_in |&gt;\n    mutate(direction = str_sub(value, 1, 1),\n           amount = as.integer(str_sub(value, 2)),\n           shift  = if_else(direction == \"L\", amount, -amount))\n}\n\n# Create dial and set to initial value\ncreate_dial &lt;- function(start, end, init) {\n  dial &lt;- start:end\n  dial &lt;- shift(dial, n = init, type = \"cyclic\")\n}\n\n# Step through the instructions and spin the dial as directed.\n# Count the number of times we stop at zero.\ndetermine_result &lt;- function() {\n  count_zeros &lt;- 0\n  for (i in seq_len(nrow(data_calc))) {\n    dial &lt;- shift(dial, n = data_calc$shift[i], type = \"cyclic\")\n    if (dial[1] == 0) {count_zeros &lt;- count_zeros + 1}\n  }\n  result &lt;- count_zeros\n}\n\ndata_calc &lt;- import_instructions(\"day01_example.txt\")\ndial &lt;- create_dial(0, 99, 50)\nresult &lt;- determine_result()\n\nAnswer for Part 1 example: result\nCode for Part 1:\n\ndata_calc &lt;- import_instructions(\"day01.txt\")\ndial &lt;- create_dial(0, 99, 50)\nresult &lt;- determine_result()\n\nAnswer for Part 1: result\nCode for Part 2 example:\n\n# Input instructions and create dataframe with direction and amount of spin\n# Also, we want the number of times around the dial and the actual change\n# in location on the dial.\nimport_instructions &lt;- function(input_file) {\n  data_in &lt;- read_lines(here::here(\"data\", input_file)) |&gt;\n    tibble(value = _)\n  data_in |&gt;\n    mutate(direction = str_sub(value, 1, 1),\n           total_amount = as.integer(str_sub(value, 2)),\n           full_spin_count = floor(total_amount / 100),\n           mod_amount = total_amount %% 100,\n           shift  = if_else(direction == \"L\", mod_amount, -mod_amount)\n           )\n}\n\n# Step through the instructions and spin the dial as directed.\n# Count the number of times we stop at zero OR pass through zero.\ndetermine_result &lt;- function() {\n  count_zeros &lt;- 0\n  for (i in seq_len(nrow(data_calc))) {\n    start_dial &lt;- dial[1]\n    dial &lt;- shift(dial, n = data_calc$shift[i], type = \"cyclic\")\n    end_dial &lt;- dial[1]\n    \n    if (data_calc$direction[i] == \"L\") {\n      if (start_dial != 0 && end_dial != 0 && start_dial - end_dial &lt; 0) { count_zeros &lt;- count_zeros + 1  }\n      }\n    else {\n      if (start_dial != 0 && end_dial != 0 && start_dial - end_dial &gt; 0) { count_zeros &lt;- count_zeros + 1  }\n    }\n    if (end_dial == 0) {count_zeros &lt;- count_zeros + 1}\n    count_zeros &lt;- count_zeros + data_calc$full_spin_count[i]\n  }\n  result &lt;- count_zeros\n}\n\ndata_calc &lt;- import_instructions(\"day01_example.txt\")\ndial &lt;- create_dial(0, 99, 50)\nresult &lt;- determine_result()\n\nAnswer for Part 2 example: result\nCode for Part 2:\n\ndata_calc &lt;- import_instructions(\"day01.txt\")\ndial &lt;- create_dial(0, 99, 50)\nresult &lt;- determine_result()\n\nAnswer for Part 2: result"
+  },
+  {
+    "objectID": "day05.html",
+    "href": "day05.html",
+    "title": "Day05",
+    "section": "",
+    "text": "Placeholder for Day05"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "I know, I know … we are not supposed to use AI. But I used Grok and Posit Assistant a lot to build this. However, I avoided using AI to solve the challenges (unless noted).\nI used AI far more in asking quarto-related questions in order to organize code and produce this website.\nVersion 0.3.6"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Advent of Code 2026: My R Solutions",
+    "section": "",
+    "text": "Welcome to My Advent of Code 2026 Journey\nNOTE: Seeing as it is 2026 and I am getting a bit older, I have made use of Grok AI to help me. Sometimes this has been used in a similar manner to Google (for reference) and sometimes for much more. I have left the private leaderboard because of this!\nI always look forward to Advent of Code. As usual, I intend on using the power of the R programming language to solve each puzzle. This website showcases my (attempted) solutions, (hopefully decent) thought processes, and the creative ways (pleasepleaseplease) I leverage R’s data manipulation and visualization capabilities to crack the daily coding conundrums. Each day, I’ll share my code, explanations, and insights, offering a glimpse into how R can be used to solve complex problems.\nThe Advent of Code is an annual event that brings together programmers worldwide to solve bite-sized, festive coding challenges throughout December. My goal is to complete as many puzzles as I can while showcasing R’s versatility, from tidyverse workflows to custom algorithms.\nLet’s celebrate the joy of coding this holiday season!"
+  },
+  {
+    "objectID": "day11.html",
+    "href": "day11.html",
+    "title": "Day11",
+    "section": "",
+    "text": "Placeholder for Day11"
+  },
+  {
+    "objectID": "day04.html",
+    "href": "day04.html",
+    "title": "Day04",
+    "section": "",
+    "text": "Placeholder for Day04"
+  },
+  {
+    "objectID": "day08.html",
+    "href": "day08.html",
+    "title": "Day08",
+    "section": "",
+    "text": "Placeholder for Day08"
+  },
+  {
+    "objectID": "day09.html",
+    "href": "day09.html",
+    "title": "Day09",
+    "section": "",
+    "text": "Placeholder for Day09"
+  },
+  {
+    "objectID": "day03.html",
+    "href": "day03.html",
+    "title": "Day03",
+    "section": "",
+    "text": "Placeholder for Day03"
+  },
+  {
+    "objectID": "day07.html",
+    "href": "day07.html",
+    "title": "Day07",
+    "section": "",
+    "text": "Placeholder for Day07"
+  },
+  {
+    "objectID": "day06.html",
+    "href": "day06.html",
+    "title": "Day06",
+    "section": "",
+    "text": "Placeholder for Day06"
+  },
+  {
+    "objectID": "day12.html",
+    "href": "day12.html",
+    "title": "Day12",
+    "section": "",
+    "text": "Placeholder for Day12"
+  },
+  {
+    "objectID": "daily-challenges.html",
+    "href": "daily-challenges.html",
+    "title": "Advent of Code 2026: Daily Challenges",
+    "section": "",
+    "text": "Day 1\nDay 2\nDay 3\nDay 4\nDay 5\n\n\nDay 6\nDay 7\nDay 8\nDay 9\nDay 10\n\n\nDay 11\nDay 12"
+  },
+  {
+    "objectID": "day10.html",
+    "href": "day10.html",
+    "title": "Day10",
+    "section": "",
+    "text": "Placeholder for Day10"
+  }
+]
